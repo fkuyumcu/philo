@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:16 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/01 19:17:50 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/01 19:18:21 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     if(check_args(argc,argv))
     {
         f_init(argc, argv, rules);
-		create_philos(t_rules *rules); 
+		create_philos(rules); 
         //program ne zaman sonlanmalı-> 1 filozof ölürse ya da maksimum öğün sayısı geçilirse        
     }
     else 
