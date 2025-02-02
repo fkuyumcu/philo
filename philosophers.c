@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:16 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/02 17:13:50 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:27:33 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv)
         f_init(argc, argv, rules);
 		create_philos(rules);
 		if(start_dinner(rules))
-			ferror ("Error");
+			ferror("Error");
     }
     else 
     {
@@ -31,7 +31,32 @@ int main(int argc, char **argv)
 
 void	check_philos(t_rules *rules)
 {
+	int i;
+	t_philo *philo;
 
+	philo = rules->philos;
+	
+	while(!rules->is_ready)
+		continue;
+	while(!rules->is_finish)
+	{
+		i = -1;
+		while(++i < rules->num_philo)
+			if (check_death(&philo[i]) || check_meals(philo[i], i))
+				continue ;
+	}
+	
+	/*
+	if (p->check_meal && philo[p->num - 1].iter_num == p->max_iter)
+	{
+		ft_usleep(5 * p->num);
+		printf("						\n");
+		printf("  All philosophers have eaten %d times\n", p->max_iter);
+		return (final_print(1));
+	}
+	return (final_print(0));
+	*/
+	
 }
 
 int	start_dinner(t_rules *rules)
@@ -73,6 +98,7 @@ void 	create_philos(t_rules *rules)
 		i++;
 	}
 	philo_init(rules);
+	rules->is_ready = 1;
 }
 
 void routine(void *job)

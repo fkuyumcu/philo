@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/02 17:02:16 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:23:17 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void f_init(int argc, char **argv, t_rules *rules)
         ferror("Malloc Err");
     rules->start_time = current_time_in_ms(); 
 	rules->is_finish = 0;
+    rules->is_ready = 0;
 }
