@@ -6,11 +6,11 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:41:12 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/01 14:32:59 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:25:58 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
 int	check_args(int argc, char **argv)
 {

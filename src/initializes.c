@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/02 17:23:17 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:25:49 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ void f_init(int argc, char **argv, t_rules *rules)
     rules->time_eat  = ft_atoi(argv[3]);
 	rules->time_sleep = ft_atoi(argv[4]);
 	if(argv[5])
+    {
 		rules->num_meals = ft_atoi(argv[5]);
+        rules->check_meal = 1;
+    }
 	else
-		rules->num_meals = -1;
+		rules->check_meal = 0;
 	rules->forks = malloc(sizeof(t_mutex) * rules->num_philo);
     if(!rules->forks)
         ferror("Malloc Err");

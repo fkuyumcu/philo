@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/02 17:19:12 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/02 19:20:43 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		start_dinner(t_rules *rules);
 void	nietzche(t_rules *rules);
 void	eat(t_philo *p);
 void    lazyness(t_philo *p);
-
+int		final_log(int is_alive);
 
 typedef pthread_mutex_t t_mutex;
 
@@ -60,6 +60,7 @@ typedef struct s_rules
 	int				time_eat;
 	int				time_sleep;
 	int				num_meals;
+	int				check_meal;
 	int				is_finish;//bir filozof öldüğünde ya da hepsi doyduğunda bu flag 1 olur.
 	t_mutex			*forks;
 	long			start_time;
