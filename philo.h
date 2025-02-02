@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/01 18:48:01 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/02 17:19:12 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int		ft_strlen(const char *str);
 void	f_init(int argc, char **argv, t_rules *rules);
 void	create_philos(t_rules *rules);
 int		ft_usleep(size_t milliseconds);
+void	philo_init(t_rules *rules);
+int		start_dinner(t_rules *rules);
+void	nietzche(t_rules *rules);
+void	eat(t_philo *p);
+void    lazyness(t_philo *p);
 
 
 typedef pthread_mutex_t t_mutex;
@@ -35,6 +40,9 @@ typedef pthread_mutex_t t_mutex;
 typedef struct s_philo
 {
     int             id;
+	int				is_ready;
+	int				is_full;
+	int				is_died;
     t_mutex			*left_fork;
     t_mutex			*right_fork;
     long            last_meal;
@@ -46,6 +54,7 @@ typedef struct s_philo
 
 typedef struct s_rules
 {
+	int 			is_ready;
     int 			num_philo;
 	int				time_die;
 	int				time_eat;
