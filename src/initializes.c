@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/02 19:25:49 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:35:40 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void philo_init(t_rules *rules)
 	}
 }
 
-void f_init(int argc, char **argv, t_rules *rules)
+void f_init(char **argv, t_rules *rules)
 {
     rules->num_philo = ft_atoi(argv[1]);
 	rules->time_die  = ft_atoi(argv[2]);
@@ -45,11 +45,11 @@ void f_init(int argc, char **argv, t_rules *rules)
 	else
 		rules->check_meal = 0;
 	rules->forks = malloc(sizeof(t_mutex) * rules->num_philo);
-    if(!rules->forks)
-        ferror("Malloc Err");
+    /* if(!(rules->forks))
+        philo_error("Malloc Err"); */
 	rules->philos = malloc(sizeof(t_philo) * rules ->num_philo);
-    if(!rules->forks)  
-        ferror("Malloc Err");
+    /* if(!rules->forks)  
+        philo_error("Malloc Err"); */
     rules->start_time = current_time_in_ms(); 
 	rules->is_finish = 0;
     rules->is_ready = 0;

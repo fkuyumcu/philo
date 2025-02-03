@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 18:47:17 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/03 13:27:38 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:54:38 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,19 @@ int	ft_usleep(size_t milliseconds)
 	return (0);
 }
 
-void ferror(char *s)
+void	philo_error(char *s, t_rules *rules, t_philo *philo, int malloc)
 {
-	//TODO	
+	if (malloc)
+	{
+		if (rules->print_mutex)
+			free(rules->print_mutex);
+		if (rules->forks)
+			free(rules->forks);
+		if (philo)
+			free(philo);
+	}
+	printf("%s", s);
 
-    return (0);
 }
 
 long current_time_in_ms(void)
