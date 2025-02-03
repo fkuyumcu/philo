@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/02 19:20:43 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:41:26 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 #include <sys/time.h>//gettimeofday
 
 int		check_args(int argc, char **argv);
-void	ferror(char *s);
-int		ft_atoi(const char *str);
+void	ferror(char *s);//TODO
+int		ft_atoi(const char *str);//could be converted to atol
 int		ft_isdigit(int c);
 int		ft_isnum(char *str);
 int		ft_strlen(const char *str);
@@ -30,10 +30,14 @@ void	create_philos(t_rules *rules);
 int		ft_usleep(size_t milliseconds);
 void	philo_init(t_rules *rules);
 int		start_dinner(t_rules *rules);
-void	nietzche(t_rules *rules);
+void	nietzche(t_rules *rules);//ad hoc
 void	eat(t_philo *p);
 void    lazyness(t_philo *p);
 int		final_log(int is_alive);
+long	current_time_in_ms(void);
+void	philo_print(t_philo *philo, char *action);//TODO
+void	fork_lock(t_philo *philo);
+void	fork_unlock(t_philo *philo);
 
 typedef pthread_mutex_t t_mutex;
 
@@ -63,6 +67,7 @@ typedef struct s_rules
 	int				check_meal;
 	int				is_finish;//bir filozof öldüğünde ya da hepsi doyduğunda bu flag 1 olur.
 	t_mutex			*forks;
+	t_mutex			*print_mutex;
 	long			start_time;
 	t_philo			*philos;
 	

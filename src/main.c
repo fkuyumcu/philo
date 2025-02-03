@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:16 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/02 19:25:46 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:39:05 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int main(int argc, char **argv)
     }
 }
 
-
-
-void nietzche(t_rules *rules)
+void nietzche(t_rules *rules)//buna bak
 {
-	//TODO
+    philo_print(rules->philos[0].id, "is thinking");
+	ft_usleep(rules->time_die);
+    final_log(0);
 }
 
 
