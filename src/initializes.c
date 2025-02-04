@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/04 17:02:55 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:43:16 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void philo_init(t_rules *rules)
 	i = -1;
 	while(++i < rules->num_philo)
 	{
-        philo->last_meal = current_time_in_ms();
 		philo = rules->philos + i;	
+        philo->last_meal = current_time_in_ms();
 		philo->id = i + 1;
 		philo->is_full = 0;
 		philo->meals_eaten = 0;
 		philo->data = rules;
 		rules->philos[i].left_fork = &rules->forks[i];
-		rules->philos[i].right_fork = &rules->forks[(i + 2) % rules->num_philo];
+		rules->philos[i].right_fork = &rules->forks[(i + 2) % (rules->num_philo)];
 	}
 }
 
@@ -46,12 +46,10 @@ void init(char **argv, t_rules *rules)
 	else
 		rules->check_meal = 0;
 	rules->forks = malloc(sizeof(t_mutex) * rules->num_philo);
-    /* if(!(rules->forks))
-        philo_error("Malloc Err"); */
 	rules->philos = malloc(sizeof(t_philo) * rules ->num_philo);
-    /* if(!rules->forks)  
-        philo_error("Malloc Err"); */
+	rules->print_mutex = malloc(sizeof(t_mutex) * 1);
     rules->start_time = current_time_in_ms(); 
 	rules->is_finish = 0;
     rules->is_ready = 0;
+	pthread_mutex_init(rules->print_mutex, NULL);
 }

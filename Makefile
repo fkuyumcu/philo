@@ -2,11 +2,11 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 
 SRC = src/philosophers.c \
 		src/better.c \
-		src/linguini.c \
+		src/dinner.c \
 		src/utils.c \
 		src/initializes.c \
 		src/main.c \

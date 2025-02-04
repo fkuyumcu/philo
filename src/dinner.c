@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   linguini.c                                         :+:      :+:    :+:   */
+/*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/04 17:50:21 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/04 18:43:42 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	fork_lock(t_philo *philo)
 {
 	if ((philo->id) % 2 == 0)
     {
-		//ft_usleep(5);
         pthread_mutex_lock(philo->right_fork);
         philo_print(philo, "has taken a fork");
         pthread_mutex_lock(philo->left_fork);
@@ -60,8 +59,8 @@ void	fork_unlock(t_philo *philo)
 
 void    lazyness(t_philo *philo)//sleep and think
 {
+    philo_print(philo, "is sleeping");
     ft_usleep(philo->data->time_sleep);
-	philo_print(philo, "is sleeping");
 	philo_print(philo, "is thinking");
 }
 
@@ -74,18 +73,17 @@ void *routine(void *job)
 		continue ;
 	/* if (philo->id & 1) tek-çift sayı beklemesi
 		ft_usleep(philo->data->time_eat * 0.9 + 1); */
-	while (!philo->data->is_finish)
+	 while (!philo->data->is_finish)//segfault
 	{
 		eat(philo);
-		lazyness(philo);
-	}
+		//lazyness(philo);
+	} 
 	return (NULL);
 }
 
 void	philo_print(t_philo *philo, char *action)
 {
 	t_rules *rules;
-
 	rules = philo->data;
 	pthread_mutex_lock(rules->print_mutex);
 	if (rules->is_finish)
