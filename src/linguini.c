@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/03 15:12:59 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:50:21 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	fork_lock(t_philo *philo)
 {
 	if ((philo->id) % 2 == 0)
     {
-		ft_usleep(5);
+		//ft_usleep(5);
         pthread_mutex_lock(philo->right_fork);
         philo_print(philo, "has taken a fork");
         pthread_mutex_lock(philo->left_fork);
@@ -65,7 +65,24 @@ void    lazyness(t_philo *philo)//sleep and think
 	philo_print(philo, "is thinking");
 }
 
-/* void	philo_print(t_philo *philo, char *action)
+void *routine(void *job)
+{
+	t_philo	*philo;
+
+	philo = (t_philo *)job;
+	while (!philo->data->is_ready)
+		continue ;
+	/* if (philo->id & 1) tek-çift sayı beklemesi
+		ft_usleep(philo->data->time_eat * 0.9 + 1); */
+	while (!philo->data->is_finish)
+	{
+		eat(philo);
+		lazyness(philo);
+	}
+	return (NULL);
+}
+
+void	philo_print(t_philo *philo, char *action)
 {
 	t_rules *rules;
 
@@ -76,7 +93,7 @@ void    lazyness(t_philo *philo)//sleep and think
 		pthread_mutex_unlock(rules->print_mutex);
 		return ;
 	}
-	printf("%ldms %d %s\n", time_now() - philo->thread_start,
-		p->id, action);
-	pthread_mutex_unlock(p->par->print_mutex);
-} */
+	printf("%ldms %d %s\n", current_time_in_ms() - philo->data->start_time,//-----------
+		philo->id, action);
+	pthread_mutex_unlock(philo->data->print_mutex);
+} 

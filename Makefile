@@ -10,6 +10,7 @@ SRC = src/philosophers.c \
 		src/utils.c \
 		src/initializes.c \
 		src/main.c \
+		src/check.c \
 
 OBJ = $(SRC:.c=.o)
 

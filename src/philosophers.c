@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:21:32 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/04 12:02:12 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/04 17:52:14 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,6 @@ void 	create_philos(t_rules *rules)
 	philo_init(rules);
 	rules->is_ready = 1;
 }
-
-void *routine(void *job)
-{
-	t_philo	*p;
-
-	p = (t_philo *)job;
-	while (!p->data->is_ready)
-		continue ;
-	if (p->id & 1)
-		ft_usleep(p->data->time_eat * 0.9 + 1);
-	while (!p->data->is_finish)
-	{
-		eat(p);
-		lazyness(p);
-	}
-	return (NULL);
-}
-
 
 void	check_philos(t_rules *rules)
 {
@@ -90,7 +72,6 @@ int	start_dinner(t_rules *rules)
 			if(pthread_create(&rules->philos[i].thread_id, NULL, routine, &rules->philos[i]))
 				return (1);
 		}
-		i = -1;
 	}
 	return 0;
 }
