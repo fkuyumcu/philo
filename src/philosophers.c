@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:21:32 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/03 15:59:37 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:02:12 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void 	create_philos(t_rules *rules)
 	rules->is_ready = 1;
 }
 
-void routine(void *job)
+void *routine(void *job)
 {
 	t_philo	*p;
 
@@ -58,7 +58,7 @@ void	check_philos(t_rules *rules)
 	{
 		i = -1;
 		while(++i < rules->num_philo)
-			if (check_death(&philo[i]) || check_meals(philo[i], i))
+			if (check_death(&philo[i]) || check_meals(philo[i], i))//buna bak
 				continue ;
 	}
 	
@@ -67,9 +67,10 @@ void	check_philos(t_rules *rules)
 		ft_usleep(5 * rules->num_philo);
 		printf("						\n");
 		printf("  All philosophers have eaten %d times\n", rules->num_meals);
-		return (final_log(1));
+		final_log(1);
+		return ;
 	}
-	return (final_log(0));
+	final_log(0);
 	
 }
 
@@ -79,14 +80,14 @@ int	start_dinner(t_rules *rules)
 
 	i = -1;
 	if (rules->num_meals == 0)
-		return ;
+		return 0;
 	else if(rules->num_philo == 1)
 		nietzche(rules);
 	else
 	{
 		while (++i < rules->num_philo)
 		{
-			if(pthread_create(&rules->philos[i].thread_id, NULL, &routine, &rules->philos[i]))
+			if(pthread_create(&rules->philos[i].thread_id, NULL, routine, &rules->philos[i]))
 				return (1);
 		}
 		i = -1;
