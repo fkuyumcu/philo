@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/04 18:43:16 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 03:37:14 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void philo_init(t_rules *rules)
 	}
 }
 
-void init(char **argv, t_rules *rules)
+void init(char **argv,int argc, t_rules *rules)
 {
 
     rules->num_philo = ft_atoi(argv[1]);
 	rules->time_die  = ft_atoi(argv[2]);
     rules->time_eat  = ft_atoi(argv[3]);
 	rules->time_sleep = ft_atoi(argv[4]);
-	if(argv[5])
+	if(argc == 6)
     {
 		rules->num_meals = ft_atoi(argv[5]);
         rules->check_meal = 1;

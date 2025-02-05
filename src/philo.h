@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/04 18:13:11 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 03:35:48 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		ft_strlen(const char *str);//OK
 int		ft_usleep(size_t milliseconds);//OK
 
 int		start_dinner(t_rules *rules);
-int		final_log(int is_alive);
+void	final_log(int is_alive);
 
 void	philo_print(t_philo *philo, char *action);//TODO
 void	fork_lock(t_philo *philo);
@@ -84,7 +84,7 @@ void	nietzche(t_rules *rules);//TODO
 void	philo_init(t_rules *rules);//OK
 void	create_philos(t_rules *rules);//OK
 
-void	init(char **argv, t_rules *rules);
+void	init(char **argv, int argc, t_rules *rules);
 void	*routine(void *job);
 
 long	current_time_in_ms(void);

@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/04 18:43:42 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 03:50:28 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ void *routine(void *job)
 	philo = (t_philo *)job;
 	while (!philo->data->is_ready)
 		continue ;
-	/* if (philo->id & 1) tek-çift sayı beklemesi
-		ft_usleep(philo->data->time_eat * 0.9 + 1); */
-	 while (!philo->data->is_finish)//segfault
+
+	 while (!philo->data->is_finish)
 	{
 		eat(philo);
-		//lazyness(philo);
+        printf("AAAA\n");
+		lazyness(philo);
 	} 
 	return (NULL);
 }
@@ -91,7 +91,7 @@ void	philo_print(t_philo *philo, char *action)
 		pthread_mutex_unlock(rules->print_mutex);
 		return ;
 	}
-	printf("%ldms %d %s\n", current_time_in_ms() - philo->data->start_time,//-----------
+	printf("%ldms %d %s\n", current_time_in_ms() - philo->data->start_time,
 		philo->id, action);
 	pthread_mutex_unlock(philo->data->print_mutex);
 } 

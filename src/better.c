@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 18:47:17 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/03 15:54:38 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 03:51:39 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_usleep(size_t milliseconds)
 
 	start = current_time_in_ms();
 	while ((current_time_in_ms() - start) < milliseconds)
-		usleep(500);//microsaniye cinsinden argüman alır
+		usleep(100);//microsaniye cinsinden argüman alır
 	return (0);
 }
 
