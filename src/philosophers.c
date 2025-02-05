@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:21:32 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 09:09:15 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 09:29:19 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,15 @@ void	check_philos(t_rules *rules)
 	{
 		i = -1;
 		while(++i < rules->num_philo)
+		{
 			if (check_death(&philo[i]) || check_meals(philo[i], i))//birisi doyduysa ya da öldüyse 1 döndürecek
 				continue ;
+			if(rules->is_finish == 1)
+				break;
+			
+		}
+			
 	}
-	
 	if (rules->check_meal && (philo[rules->num_philo - 1].meals_eaten == rules->num_meals))
 	{
 		ft_usleep(5 * rules->num_philo);
@@ -67,7 +72,6 @@ int	start_dinner(t_rules *rules)
 		nietzche(rules);
 	else if(rules->num_philo > 1)
 	{
-		printf("\nDEBUGG\n");
 		while (++i < rules->num_philo)
 		{
 			if(pthread_create(&rules->philos[i].thread_id, NULL, routine, &rules->philos[i]))
