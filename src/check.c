@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 03:47:27 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 09:01:04 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ int		check_death(t_philo *philo)
     {
         philo->data->is_finish = 1;
         pthread_mutex_unlock(philo->data->print_mutex);
-		funeral(philo);
-        return(1);
+        return(funeral(philo));
     }
     pthread_mutex_unlock(philo->data->print_mutex);
     return (0);

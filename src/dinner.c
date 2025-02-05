@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 08:49:55 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 09:00:44 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	fork_lock(t_philo *philo)
         	philo_print(philo, "has taken a fork");
 			pthread_mutex_lock(philo->right_fork);
 			philo_print(philo, "has taken a fork");
-
 		}
         
 }
@@ -63,6 +62,7 @@ void *routine(void *job)
 	t_philo	*philo;
 
 	philo = (t_philo *)job;
+	printf("\nAAABBCC\n");
 	while (!(philo->data->is_ready))
 		continue ;
 
