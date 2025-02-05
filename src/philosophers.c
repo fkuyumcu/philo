@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:21:32 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 03:41:46 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 08:52:17 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	check_philos(t_rules *rules)
 				continue ;
 	}
 	
-	if (rules->check_meal && philo[rules->num_philo - 1].meals_eaten == rules->num_meals)
+	if (rules->check_meal && (philo[rules->num_philo - 1].meals_eaten == rules->num_meals))
 	{
 		ft_usleep(5 * rules->num_philo);
 		printf("						\n");

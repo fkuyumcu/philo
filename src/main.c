@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:16 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 03:35:21 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 08:46:52 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)//hata durumlarına bak
 		create_philos(&rules);
 		start_dinner(&rules);
         check_philos(&rules);
-        //end_philos(&rules);
+        end_philos(&rules);
         return 0;
     }//wall wextra
     else 

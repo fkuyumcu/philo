@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 18:47:17 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 03:51:39 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 08:38:57 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	philo_error(char *s, t_rules *rules, t_philo *philo, int malloc)
 
 }
 
-long current_time_in_ms(void)
+long int current_time_in_ms(void)
 {
     struct timeval tv;
     gettimeofday(&tv, NULL);

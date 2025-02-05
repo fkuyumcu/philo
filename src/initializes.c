@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 03:37:14 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 08:46:17 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void init(char **argv,int argc, t_rules *rules)
 		rules->check_meal = 0;
 	rules->forks = malloc(sizeof(t_mutex) * rules->num_philo);
 	rules->philos = malloc(sizeof(t_philo) * rules ->num_philo);
-	rules->print_mutex = malloc(sizeof(t_mutex) * 1);
+	rules->print_mutex = malloc(sizeof(t_mutex) * 5);
     rules->start_time = current_time_in_ms(); 
 	rules->is_finish = 0;
     rules->is_ready = 0;

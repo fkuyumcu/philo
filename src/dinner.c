@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 03:50:28 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/05 08:49:55 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,28 @@ void eat(t_philo *philo)
 
 void	fork_lock(t_philo *philo)
 {
-	if ((philo->id) % 2 == 0)
-    {
-        pthread_mutex_lock(philo->right_fork);
-        philo_print(philo, "has taken a fork");
-        pthread_mutex_lock(philo->left_fork);
-        philo_print(philo, "has taken a fork");
-    }
-    else
-    {
-        pthread_mutex_lock(philo->left_fork);
-        philo_print(philo, "has taken a fork");
-        pthread_mutex_lock(philo->right_fork);
-        philo_print(philo, "has taken a fork");
-    }
+		if((philo->id %2) == 0)
+		{
+			pthread_mutex_lock(philo->right_fork);
+        	philo_print(philo, "has taken a fork");
+        	pthread_mutex_lock(philo->left_fork);
+        	philo_print(philo, "has taken a fork");
+		}
+		else
+		{
+        	pthread_mutex_lock(philo->left_fork);
+        	philo_print(philo, "has taken a fork");
+			pthread_mutex_lock(philo->right_fork);
+			philo_print(philo, "has taken a fork");
+
+		}
+        
 }
 
 void	fork_unlock(t_philo *philo)
 {
-    if ((philo->id) % 2 == 0)
-    {
-        pthread_mutex_unlock(philo->left_fork);
-        pthread_mutex_unlock(philo->right_fork);
-    }
-    else
-    {
-        pthread_mutex_unlock(philo->right_fork);
-        pthread_mutex_unlock(philo->left_fork);
-    }
+    pthread_mutex_unlock(philo->left_fork);
+    pthread_mutex_unlock(philo->right_fork);
 }
 
 void    lazyness(t_philo *philo)//sleep and think
@@ -69,13 +63,12 @@ void *routine(void *job)
 	t_philo	*philo;
 
 	philo = (t_philo *)job;
-	while (!philo->data->is_ready)
+	while (!(philo->data->is_ready))
 		continue ;
 
 	 while (!philo->data->is_finish)
 	{
 		eat(philo);
-        printf("AAAA\n");
 		lazyness(philo);
 	} 
 	return (NULL);
