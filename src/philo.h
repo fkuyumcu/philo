@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/05 03:35:48 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:49:12 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_rules
 	int				time_sleep;
 	int				num_meals;
 	int				check_meal;
+	int				ate;
 	int				is_finish;//bir filozof öldüğünde ya da hepsi doyduğunda bu flag 1 olur.
 	t_mutex			*forks;
 	t_mutex			*print_mutex;
@@ -65,6 +66,7 @@ int		ft_isdigit(int c);//OK
 int		ft_isnum(char *str);//OK
 int		ft_strlen(const char *str);//OK
 int		ft_usleep(size_t milliseconds);//OK
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int		start_dinner(t_rules *rules);
 void	final_log(int is_alive);

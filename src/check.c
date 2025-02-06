@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 15:14:54 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:43:07 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ int funeral(t_philo *philo)
 int		check_death(t_philo *philo)
 {
     size_t hunger;
+    
     pthread_mutex_lock(philo->data->print_mutex);
     hunger = current_time_in_ms() - philo->last_meal;
-    if(hunger >= philo->data->time_die)
+    if(hunger > philo->data->time_die)
     {
         philo->data->is_finish = 1;
         pthread_mutex_unlock(philo->data->print_mutex);
