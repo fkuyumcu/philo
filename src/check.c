@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 17:10:38 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:36:12 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ int funeral(t_philo *philo)
 {
     philo_print(philo,"died");
 	philo->is_died = 1;
+    pthread_mutex_lock(philo->data->furky_mutex);
 	philo->data->is_finish = 1;
+    pthread_mutex_unlock(philo->data->furky_mutex);
+    
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	return (1);	
@@ -24,15 +27,16 @@ int funeral(t_philo *philo)
 
 int		check_death(t_philo *philo)
 {
-    size_t hunger;
+    int hunger;
     
     pthread_mutex_lock(philo->data->print_mutex);
     hunger = current_time_in_ms() - philo->last_meal;
     if(hunger > philo->data->time_die)
     {
+        pthread_mutex_lock(philo->data->furky_mutex);
         philo->data->is_finish = 1;
+        pthread_mutex_unlock(philo->data->furky_mutex);
         pthread_mutex_unlock(philo->data->print_mutex);
-        
         return(funeral(philo));
     }
     pthread_mutex_unlock(philo->data->print_mutex);
@@ -53,8 +57,10 @@ int check_meals(t_philo philo, int meal)
             if (rules->philos[i].meals_eaten < meal)
                 return (1);
         }
+    pthread_mutex_lock(philo.data->furky_mutex);
     rules->is_finish = 1;
     rules->is_full = 1;
+    pthread_mutex_lock(philo.data->furky_mutex);
     }
     return (0);
 }

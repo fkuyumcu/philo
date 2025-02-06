@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:21:32 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 17:04:02 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:26:02 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,13 @@ void end_philos(t_rules *rules)
 			pthread_join(rules->philos[i].thread_id, (void *)&philo[i]);
 	pthread_mutex_destroy(rules->print_mutex);
 	pthread_mutex_destroy(rules->forks);
+	pthread_mutex_destroy(rules->rand_mutex);
+	pthread_mutex_destroy(rules->start_mutex);
+	pthread_mutex_destroy(rules->furky_mutex);
 	free(rules->forks);
 	free(rules->print_mutex);
 	free(rules->philos);
+	free(rules->rand_mutex);
+	free(rules->start_mutex);
+	free(rules->furky_mutex);
 }

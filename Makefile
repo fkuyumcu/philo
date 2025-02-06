@@ -2,7 +2,7 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = 
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
 
 SRC = src/philosophers.c \
 		src/better.c \

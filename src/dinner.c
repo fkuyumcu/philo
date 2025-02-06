@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 17:02:58 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 19:37:41 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void eat(t_philo *philo)
 
     rules = philo->data;
     fork_lock(philo);
-    
     philo_print(philo, "is eating");
-	philo->last_meal = current_time_in_ms();
+	//pthread_mutex_lock(philo->data->rand_mutex);
+    //philo->last_meal = current_time_in_ms();
+   // pthread_mutex_unlock(philo->data->rand_mutex);
     ft_usleep(rules->time_eat);
 	
+	pthread_mutex_lock(philo->data->rand_mutex);
     philo->meals_eaten++;
 	philo->data->ate++;
+	pthread_mutex_unlock(philo->data->rand_mutex);
 	
 	fork_unlock(philo);
 }
@@ -49,8 +52,16 @@ void fork_lock(t_philo *philo)
 
 void fork_unlock(t_philo *philo)
 {
-    pthread_mutex_unlock(philo->left_fork);
-    pthread_mutex_unlock(philo->right_fork);
+    if (philo->id % 2 == 0)
+    {
+        pthread_mutex_unlock(philo->left_fork);
+        pthread_mutex_unlock(philo->right_fork);
+    }
+    else
+    {
+        pthread_mutex_unlock(philo->right_fork);
+        pthread_mutex_unlock(philo->left_fork);
+    }
 }
 
 void    lazyness(t_philo *philo)//sleep and think
@@ -68,8 +79,12 @@ void *routine(void *job)
 	
 	while (!(philo->data->is_ready))
 		continue ;
+	
+	pthread_mutex_lock(philo->data->start_mutex);
 	if(philo->data->ate == 0)
 		philo->data->start_time = current_time_in_ms();
+	pthread_mutex_unlock(philo->data->start_mutex);
+		
 	 while (!philo->data->is_finish)
 	{
 		eat(philo);
@@ -77,19 +92,21 @@ void *routine(void *job)
 	} 
 	return (NULL);
 }
-
-void	philo_print(t_philo *philo, char *action)
+void philo_print(t_philo *philo, char *action)
 {
-	t_rules *rules;
-	rules = philo->data;
-	pthread_mutex_lock(rules->print_mutex);
-	if (rules->is_finish && ft_strncmp(action, "died", 5))
-	{
-		pthread_mutex_unlock(rules->print_mutex);
-		return ;
-	}
-	
-	printf("%ld %d %s\n", current_time_in_ms() - philo->data->start_time,
-		philo->id, action);
-	pthread_mutex_unlock(philo->data->print_mutex);
-} 
+    t_rules *rules;
+
+    pthread_mutex_lock(philo->data->print_mutex);
+    rules = philo->data;
+
+    if (rules->is_finish && ft_strncmp(action, "died", 5))
+    {
+        pthread_mutex_unlock(rules->print_mutex);
+        return;
+    }
+
+    printf("%ld %d %s\n", current_time_in_ms() - philo->data->start_time,
+           philo->id, action);
+
+    pthread_mutex_unlock(philo->data->print_mutex);
+}
