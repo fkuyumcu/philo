@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 16:49:12 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:07:56 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_rules
 	int				num_meals;
 	int				check_meal;
 	int				ate;
+	int				is_full;
 	int				is_finish;//bir filozof öldüğünde ya da hepsi doyduğunda bu flag 1 olur.
 	t_mutex			*forks;
 	t_mutex			*print_mutex;

@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 16:49:53 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:02:58 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void    lazyness(t_philo *philo)//sleep and think
 void *routine(void *job)
 {
 	t_philo	*philo;
-	//if(philo->data->ate == 0)
-		//philo->data->start_time = current_time_in_ms();
+
 	philo = (t_philo *)job;
 	
 	while (!(philo->data->is_ready))
@@ -84,7 +83,7 @@ void	philo_print(t_philo *philo, char *action)
 	t_rules *rules;
 	rules = philo->data;
 	pthread_mutex_lock(rules->print_mutex);
-	if (rules->is_finish && ft_strncmp(action, "died",4) != 0)
+	if (rules->is_finish && ft_strncmp(action, "died", 5))
 	{
 		pthread_mutex_unlock(rules->print_mutex);
 		return ;

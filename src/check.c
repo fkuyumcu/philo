@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 16:43:07 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:10:38 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ int check_meals(t_philo philo, int meal)
                 return (1);
         }
     rules->is_finish = 1;
+    rules->is_full = 1;
     }
-    else
-        return(0);
     return (0);
 }
 
@@ -66,4 +65,33 @@ void		final_log(int is_alive)
         printf("\nEverybody is OK :)");
     else
         printf("\nSomeone's Dead :(\n");
+}
+
+void	check_philos(t_rules *rules)
+{
+	int i;
+	t_philo *philo;
+
+	philo = rules->philos;
+	
+	while(!rules->is_ready)
+		continue;
+	while(!rules->is_finish)
+	{
+		i = -1;
+		while(++i < rules->num_philo)
+		{
+			if (check_death(&philo[i]) || check_meals(philo[i], rules->num_meals))//birisi doyduysa ya da öldüyse 1 döndürecek
+				break ;
+		}
+	}
+	if (rules->check_meal && rules->is_full == 1)
+	{
+		ft_usleep(5 * rules->num_philo);
+		printf("						\n");
+		printf("  All philosophers have eaten %d times\n", rules->num_meals);
+		final_log(1);
+		return ;
+	}
+	final_log(0);
 }

@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 16:26:59 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:08:06 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void init(char **argv, int argc, t_rules *rules)
 	rules->print_mutex = malloc(sizeof(t_mutex) * 5);
 	rules->is_finish = 0;
     rules->is_ready = 0;
+	rules->is_full = 0;
 	rules->ate = 0;
 	pthread_mutex_init(rules->print_mutex, NULL);
 }

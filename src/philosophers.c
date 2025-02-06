@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:21:32 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 16:24:11 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:04:02 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,7 @@ void 	create_philos(t_rules *rules)
 	rules->is_ready = 1;
 }
 
-void	check_philos(t_rules *rules)
-{
-	int i;
-	t_philo *philo;
 
-	philo = rules->philos;
-	
-	while(!rules->is_ready)
-		continue;
-	while(!rules->is_finish)
-	{
-		i = -1;
-		while(++i < rules->num_philo)
-		{
-			if (check_death(&philo[i]) || check_meals(philo[i], rules->num_meals))//birisi doyduysa ya da öldüyse 1 döndürecek
-				break ;
-		}
-	}
-	if (rules->check_meal && (philo[0].meals_eaten == rules->num_meals))
-	{
-		ft_usleep(5 * rules->num_philo);
-		printf("						\n");
-		printf("  All philosophers have eaten %d times\n", rules->num_meals);
-		final_log(1);
-		return ;
-	}
-	final_log(0);
-}
 
 int	start_dinner(t_rules *rules)
 {
