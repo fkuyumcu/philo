@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 13:38:53 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:46:41 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,12 @@ void	philo_print(t_philo *philo, char *action)
 	t_rules *rules;
 	rules = philo->data;
 	pthread_mutex_lock(rules->print_mutex);
-	if (rules->is_finish)
+	if (rules->is_finish && strcmp(action, "died") != 0)
 	{
 		pthread_mutex_unlock(rules->print_mutex);
 		return ;
 	}
+	
 	printf("%ldms %d %s\n", current_time_in_ms() - philo->data->start_time,
 		philo->id, action);
 	pthread_mutex_unlock(philo->data->print_mutex);
