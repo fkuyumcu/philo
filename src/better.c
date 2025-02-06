@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 18:47:17 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 13:37:28 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:12:24 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_usleep(size_t milliseconds)
 
 	start = current_time_in_ms();
 	while ((current_time_in_ms() - start) < milliseconds)
-		usleep(50);//microsaniye cinsinden argüman alır
+		usleep(500);//microsaniye cinsinden argüman alır
 	return (0);
 }
 
@@ -41,6 +41,6 @@ long int current_time_in_ms(void)
 {
     struct timeval tv;
     gettimeofday(&tv, NULL);
-    return (tv.tv_sec * 1000L + tv.tv_usec / 1000);
+    return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 

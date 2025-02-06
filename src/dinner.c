@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 13:58:12 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:46:45 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,33 @@ void eat(t_philo *philo)
 
     rules = philo->data;
     fork_lock(philo);
-    philo->last_meal = current_time_in_ms();
+    
     philo_print(philo, "is eating");
     ft_usleep(rules->time_eat);
+	philo->last_meal = current_time_in_ms();
     philo->meals_eaten++;
 	fork_unlock(philo);
 }
 
-void	fork_lock(t_philo *philo)
+void fork_lock(t_philo *philo)
 {
-		if((philo->id % 2) == 0)
-		{
-			pthread_mutex_lock(philo->right_fork);
-        	philo_print(philo, "has taken a fork");
-        	pthread_mutex_lock(philo->left_fork);
-        	philo_print(philo, "has taken a fork");
-		}
-		else
-		{
-        	pthread_mutex_lock(philo->left_fork);
-        	philo_print(philo, "has taken a fork");
-			pthread_mutex_lock(philo->right_fork);
-			philo_print(philo, "has taken a fork");
-		}
-        
+    if (philo->id % 2 == 0)
+    {
+        pthread_mutex_lock(philo->left_fork);
+        philo_print(philo, "has taken a fork");
+        pthread_mutex_lock(philo->right_fork);
+        philo_print(philo, "has taken a fork");
+    }
+    else
+    {
+        pthread_mutex_lock(philo->right_fork);
+        philo_print(philo, "has taken a fork");
+        pthread_mutex_lock(philo->left_fork);
+        philo_print(philo, "has taken a fork");
+    }
 }
 
-void	fork_unlock(t_philo *philo)
+void fork_unlock(t_philo *philo)
 {
     pthread_mutex_unlock(philo->left_fork);
     pthread_mutex_unlock(philo->right_fork);
@@ -84,7 +84,7 @@ void	philo_print(t_philo *philo, char *action)
 		return ;
 	}
 	
-	printf("%ldms %d %s\n", current_time_in_ms() - philo->data->start_time,
+	printf("%ld %d %s\n", current_time_in_ms() - philo->data->start_time,
 		philo->id, action);
 	pthread_mutex_unlock(philo->data->print_mutex);
 } 
