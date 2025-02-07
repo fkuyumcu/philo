@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/07 16:36:58 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:01:47 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,63 @@
 int funeral(t_philo *philo)
 {
     philo_print(philo,"died");
-	philo->is_died = 1;
-	philo->data->is_finish = 1;
-    
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
 	return (1);	
 }
 
-int		check_death(t_philo *philo)
+int check_death(t_philo *philo)
 {
     int hunger;
-    
-    pthread_mutex_lock(philo->data->print_mutex);
-    hunger = current_time_in_ms() - philo->last_meal;
-    if(hunger > philo->data->time_die)
-    {
 
-        philo->data->is_finish = 1;
-        pthread_mutex_unlock(philo->data->print_mutex);
-        return(funeral(philo));
+    pthread_mutex_lock(philo->data->meal_mutex);
+    hunger = current_time_in_ms() - philo->last_meal;
+    pthread_mutex_unlock(philo->data->meal_mutex);
+
+    pthread_mutex_lock(philo->data->finish_mutex);
+    if (philo->data->is_finish)  // is_finish değişkenine güvenli erişim
+    {
+        pthread_mutex_unlock(philo->data->finish_mutex);
+        return (0);
     }
-    pthread_mutex_unlock(philo->data->print_mutex);
+    pthread_mutex_unlock(philo->data->finish_mutex);
+
+    if (hunger > philo->data->time_die)
+    {
+        pthread_mutex_lock(philo->data->finish_mutex);
+        philo->data->is_finish = 1;
+        pthread_mutex_unlock(philo->data->finish_mutex);
+        return (funeral(philo));
+    }
     return (0);
 }
+
 
 int check_meals(t_philo philo, int meal)
 {
     int i;
     t_rules *rules;
+
     rules = philo.data;
     i = -1;
-    if(rules->check_meal == 1)
+    if (rules->check_meal == 1)
     {
-        
+        pthread_mutex_lock(rules->meal_mutex);  // Kilidi fonksiyonun başında al
         while (++i < rules->num_philo)
         {
             if (rules->philos[i].meals_eaten < meal)
+            {
+                pthread_mutex_unlock(rules->meal_mutex); // Kilidi aç
                 return (1);
+            }
         }
-    
-
-    
-    rules->is_finish = 1;
-    rules->is_full = 1;
+        pthread_mutex_unlock(rules->meal_mutex); // Kilidi tüm kontrol bittikten sonra aç
+        
+        pthread_mutex_lock(rules->finish_mutex);
+        rules->is_finish = 1;
+        pthread_mutex_unlock(rules->finish_mutex);
     }
     return (0);
 }
+
 
 void		final_log(int is_alive)
 {
@@ -89,13 +99,7 @@ void	check_philos(t_rules *rules)
 				break ;
 		}
 	}
-	if (rules->check_meal && rules->is_full == 1)
-	{
-		ft_usleep(5 * rules->num_philo);
-		printf("						\n");
-		printf("  All philosophers have eaten %d times\n", rules->num_meals);
-		final_log(1);
-		return ;
-	}
-	final_log(0);
+    
+
+	//final_log(0);
 }
