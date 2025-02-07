@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/07 19:05:01 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/07 19:06:14 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void *routine(void *job)
 	philo = (t_philo *)job;
 	while (!(philo->data->is_ready))
 		continue ;
-    if (philo->id & 1)
-		ft_usleep(philo->data->time_eat * 0.9 + 1);
+   /*  if (philo->id & 1)
+		ft_usleep(philo->data->time_eat * 0.9 + 1); */
 	 while (1)
     {
     eat(philo);
