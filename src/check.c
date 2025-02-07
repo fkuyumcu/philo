@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 19:36:12 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:58:30 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,19 @@ int check_meals(t_philo philo, int meal)
     i = -1;
     if(rules->check_meal == 1)
     {
+    
         while (++i < rules->num_philo)
         {
+            
             if (rules->philos[i].meals_eaten < meal)
                 return (1);
+            
+        
         }
     pthread_mutex_lock(philo.data->furky_mutex);
     rules->is_finish = 1;
     rules->is_full = 1;
-    pthread_mutex_lock(philo.data->furky_mutex);
+    pthread_mutex_unlock(philo.data->furky_mutex);
     }
     return (0);
 }

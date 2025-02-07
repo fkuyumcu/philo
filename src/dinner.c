@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 19:37:41 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:03:14 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@ void eat(t_philo *philo)
     rules = philo->data;
     fork_lock(philo);
     philo_print(philo, "is eating");
-	//pthread_mutex_lock(philo->data->rand_mutex);
-    //philo->last_meal = current_time_in_ms();
-   // pthread_mutex_unlock(philo->data->rand_mutex);
     ft_usleep(rules->time_eat);
 	
 	pthread_mutex_lock(philo->data->rand_mutex);
@@ -76,9 +73,11 @@ void *routine(void *job)
 	t_philo	*philo;
 
 	philo = (t_philo *)job;
+	//pthread_mutex_lock(philo->data->aaa_mutex);
 	
 	while (!(philo->data->is_ready))
 		continue ;
+	//pthread_mutex_unlock(philo->data->aaa_mutex);
 	
 	pthread_mutex_lock(philo->data->start_mutex);
 	if(philo->data->ate == 0)
@@ -98,15 +97,14 @@ void philo_print(t_philo *philo, char *action)
 
     pthread_mutex_lock(philo->data->print_mutex);
     rules = philo->data;
-
     if (rules->is_finish && ft_strncmp(action, "died", 5))
     {
         pthread_mutex_unlock(rules->print_mutex);
         return;
     }
-
     printf("%ld %d %s\n", current_time_in_ms() - philo->data->start_time,
            philo->id, action);
+
 
     pthread_mutex_unlock(philo->data->print_mutex);
 }

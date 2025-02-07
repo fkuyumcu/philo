@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 19:25:29 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/07 12:39:50 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_rules
 	int				is_finish;//bir filozof öldüğünde ya da hepsi doyduğunda bu flag 1 olur.
 	t_mutex			*forks;
 	t_mutex			*print_mutex;
+	//t_mutex			*aaa_mutex;
 	t_mutex			*start_mutex;
 	t_mutex			*furky_mutex;
 	t_mutex			*rand_mutex;
