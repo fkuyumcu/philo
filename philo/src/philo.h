@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 16:02:40 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:05:03 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include <pthread.h>
 #include <string.h>
-#include <sys/time.h>//gettimeofday
+#include <sys/time.h>
 
 typedef pthread_mutex_t t_mutex;
 typedef struct s_rules t_rules;
@@ -89,10 +89,5 @@ void	init(char **argv, int argc, t_rules *rules);
 void	*routine(void *job);
 
 long	current_time_in_ms(void);
-
-
-
-
-
 
 #endif
