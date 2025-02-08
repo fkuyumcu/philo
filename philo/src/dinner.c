@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 16:40:06 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:48:43 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void *routine(void *job)
     int is_finish = philo->data->is_finish;
     pthread_mutex_unlock(philo->data->finish_mutex);
     if (is_finish)
-        break;
+    	break;
 }
 	return (NULL);
 }
@@ -118,12 +118,10 @@ int	start_dinner(t_rules *rules)
 	
 	i = -1;
 	if (rules->num_meals == 0 && rules->check_meal == 1)
-		return 0;
+		return (0);
 	rules->start_time = current_time_in_ms();
 	if(rules->num_philo == 1)
-	 {
 		nietzsche(rules);
-	 }
 	 else if(rules->num_philo > 1)
 	 {
 		while (++i < rules->num_philo)
@@ -134,6 +132,5 @@ int	start_dinner(t_rules *rules)
 		check_philos(rules);
         end_philos(rules);
 	}
-		
-	return 0;
+	return (0);
 }
