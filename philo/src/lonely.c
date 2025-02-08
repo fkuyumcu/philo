@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:15:25 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:41:41 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:58:22 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,9 @@ int	check_args(int argc, char **argv)
             i++;
         }
     }
-        return (1);  
+    else
+    {
+        return (0);  
+    }
+    return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:27:29 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:02:40 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ typedef struct s_philo
 {
     int             id;
 	int				is_ready;
-	int				is_full;
-	int				is_died;
     t_mutex			*left_fork;
     t_mutex			*right_fork;
     long            last_meal;
@@ -47,8 +45,7 @@ typedef struct s_rules
 	int				num_meals;
 	int				check_meal;
 	int				ate;
-	int				is_full;
-	int				is_finish;//bir filozof öldüğünde ya da hepsi doyduğunda bu flag 1 olur.
+	int				is_finish;
 	t_mutex			*forks;
 	t_mutex			*print_mutex;
 	t_mutex			*meal_mutex;

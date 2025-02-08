@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:36:34 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:52:06 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int check_meals(t_philo philo, int meal)
     }
     return (0);
 }
-
 
 void	check_philos(t_rules *rules)
 {

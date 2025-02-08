@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:29:09 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:04:04 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void philo_init(t_rules *rules)
 		philo->data = rules;
 		rules->is_finish = 0;
 		rules->philos[i].left_fork = &rules->forks[i];
-		rules->philos[i].right_fork = &rules->forks[(i + 1) % (rules->num_philo)];//!!!!!!!
+		rules->philos[i].right_fork = &rules->forks[(i + 1) % (rules->num_philo)];
 	}
 }
 
@@ -61,6 +61,7 @@ void init(char **argv, int argc, t_rules *rules)
 	rules->is_ready = 0;
 	rules->is_finish = 0;
 	rules->ate = 0;
+	rules->start_time = 0;
 	
 	
 }
