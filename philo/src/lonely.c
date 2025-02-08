@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:15:25 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:58:22 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 17:11:05 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,19 @@ int	check_args(int argc, char **argv)
         return (0);  
     }
     return (1);
+}
+
+void philo_print(t_philo *philo, char *action)
+{
+	pthread_mutex_lock(philo->data->finish_mutex);
+	if (philo->data->is_finish && ft_strncmp(action, "died", 5))
+	{
+		pthread_mutex_unlock(philo->data->finish_mutex);
+		return;
+	}
+	pthread_mutex_unlock(philo->data->finish_mutex);
+	pthread_mutex_lock(philo->data->print_mutex);
+	printf("%ld %d %s\n", current_time_in_ms() - philo->data->start_time,
+		   philo->id, action);
+	pthread_mutex_unlock(philo->data->print_mutex);
 }
