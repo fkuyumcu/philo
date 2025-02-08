@@ -1,34 +1,33 @@
 NAME = philo
 
 CC = cc
-
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror
 
 SRC = src/philosophers.c \
-		src/better.c \
-		src/dinner.c \
-		src/utils.c \
-		src/initializes.c \
-		src/main.c \
-		src/check.c \
-		src/lonely.c \
+      src/time.c \
+      src/dinner.c \
+      src/utils.c \
+      src/initializes.c \
+      src/main.c \
+      src/check.c \
+      src/lonely.c 
 
 OBJ = $(SRC:.c=.o)
 
-.c.o:
-	@$(CC) $(CFLAGS) $< -o $@
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME):
-		$(CC) $(SRC) $(CFLAGS) -o $(NAME)
+$(NAME): $(OBJ)
+	@$(CC) $(OBJ) $(CFLAGS) -o $(NAME)
 
 all: $(NAME)
 
 clean:
-		@rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
-		@rm -rf $(NAME)
+	@rm -rf $(NAME)
 
-re:	fclean all
+re: fclean all
 
 .PHONY: all clean fclean re

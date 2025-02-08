@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 10:15:18 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:36:34 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ int check_death(t_philo *philo)
     pthread_mutex_unlock(philo->data->meal_mutex);
 
     pthread_mutex_lock(philo->data->finish_mutex);
-    if (philo->data->is_finish)  // is_finish değişkenine güvenli erişim
+    if (philo->data->is_finish)
     {
         pthread_mutex_unlock(philo->data->finish_mutex);
         return (0);
     }
     pthread_mutex_unlock(philo->data->finish_mutex);
-
     if (hunger > philo->data->time_die)
     {
         pthread_mutex_lock(philo->data->finish_mutex);
@@ -43,7 +42,6 @@ int check_death(t_philo *philo)
     }
     return (0);
 }
-
 
 int check_meals(t_philo philo, int meal)
 {
@@ -63,8 +61,7 @@ int check_meals(t_philo philo, int meal)
                 return (1);
             }
         }
-        pthread_mutex_unlock(rules->meal_mutex); // Kilidi tüm kontrol bittikten sonra aç
-        
+        pthread_mutex_unlock(rules->meal_mutex);
         pthread_mutex_lock(rules->finish_mutex);
         rules->is_finish = 1;
         pthread_mutex_unlock(rules->finish_mutex);
@@ -87,7 +84,7 @@ void	check_philos(t_rules *rules)
 		i = -1;
 		while(++i < rules->num_philo)
 		{
-			if (check_death(&philo[i]) || check_meals(philo[i], rules->num_meals))//birisi doyduysa ya da öldüyse 1 döndürecek
+			if (check_death(&philo[i]) || check_meals(philo[i], rules->num_meals))
 				break ;
 		}
 	}

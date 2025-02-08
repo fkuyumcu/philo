@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:41:12 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 12:35:07 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:35:05 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	check_args(int argc, char **argv)
             i++;
         }
     }
-    else 
-        return (0);
-    return (1);    
+        return (1);  
 }
 
 int	ft_isdigit(int c)
