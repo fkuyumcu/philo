@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/07 19:01:47 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 09:53:25 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int check_meals(t_philo philo, int meal)
     i = -1;
     if (rules->check_meal == 1)
     {
-        pthread_mutex_lock(rules->meal_mutex);  // Kilidi fonksiyonun başında al
+        pthread_mutex_lock(rules->meal_mutex);
         while (++i < rules->num_philo)
         {
             if (rules->philos[i].meals_eaten < meal)
             {
-                pthread_mutex_unlock(rules->meal_mutex); // Kilidi aç
+                pthread_mutex_unlock(rules->meal_mutex);
                 return (1);
             }
         }

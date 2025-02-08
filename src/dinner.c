@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/07 19:06:14 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 09:58:44 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ void eat(t_philo *philo)
     philo_print(philo, "is eating");
     pthread_mutex_lock(philo->data->meal_mutex);
     philo->last_meal = current_time_in_ms();
-    philo->meals_eaten++;
-    pthread_mutex_unlock(philo->data->meal_mutex);
-    ft_usleep(rules->time_eat);
     
+    pthread_mutex_unlock(philo->data->meal_mutex);
+	
+    ft_usleep(rules->time_eat);
+	pthread_mutex_lock(philo->data->meal_mutex);
+    philo->meals_eaten++;
+	pthread_mutex_unlock(philo->data->meal_mutex);
 	fork_unlock(philo);
 }
 
@@ -73,12 +76,20 @@ void *routine(void *job)
 	philo = (t_philo *)job;
 	while (!(philo->data->is_ready))
 		continue ;
-   /*  if (philo->id & 1)
-		ft_usleep(philo->data->time_eat * 0.9 + 1); */
 	 while (1)
     {
-    eat(philo);
-    lazyness(philo);
+	if(philo->id % 2 == 0)
+	{
+		eat(philo);
+    	lazyness(philo);
+	}
+	else
+	{
+		lazyness(philo);
+		eat(philo);
+    	
+	}
+    
     pthread_mutex_lock(philo->data->finish_mutex);
     int is_finish = philo->data->is_finish;
     pthread_mutex_unlock(philo->data->finish_mutex);
