@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:15:25 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:32:08 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:41:41 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,22 @@ void nietzsche(t_rules *rules)
 	free(rules->finish_mutex);
 	free(rules->philos);
 	free(rules->meal_mutex);
+}
+
+int	check_args(int argc, char **argv)
+{
+    if (argc == 5 || argc == 6)
+    {
+        int i;
+        i = 1;
+        while(argv[i])
+        {
+            if(!(ft_isnum(argv[i])))
+                return (0);
+			else if(ft_atol(argv[i]) <= 0 ||  ft_atol(argv[i]) >= 2147483647)
+				return (0);
+            i++;
+        }
+    }
+        return (1);  
 }

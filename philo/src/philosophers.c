@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:21:32 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 13:00:02 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:41:08 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ void 	create_philos(t_rules *rules)
 	philo_init(rules);
 	rules->is_ready = 1;
 }	
-
-
-
-
 
 void end_philos(t_rules *rules)
 {

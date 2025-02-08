@@ -6,29 +6,11 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:41:12 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:35:05 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:41:28 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	check_args(int argc, char **argv)
-{
-    if (argc == 5 || argc == 6)
-    {
-        int i;
-        i = 1;
-        while(argv[i])
-        {
-            if(!(ft_isnum(argv[i])))
-                return (0);
-			else if(ft_atol(argv[i]) <= 0 ||  ft_atol(argv[i]) >= 2147483647)
-				return (0);
-            i++;
-        }
-    }
-        return (1);  
-}
 
 int	ft_isdigit(int c)
 {
