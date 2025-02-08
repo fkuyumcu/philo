@@ -18,20 +18,10 @@ void *loop(void *arg)
     t_rules *rules = (t_rules *)arg;
 
     rules->start_time = current_time_in_ms();
-    rules->ate = current_time_in_ms();
-    while (1)
-    {
-        printf("%ld %d is eating\n", current_time_in_ms() - rules->start_time, 1);
-        rules->ate = current_time_in_ms();
-        ft_usleep(rules->time_eat);
-        printf("%ld %d is sleeping\n", current_time_in_ms() - rules->start_time, 1);
-        ft_usleep(rules->time_sleep);
-        if (current_time_in_ms() - rules->ate > rules->time_die)
-        {
-            printf("%ld %d died\n", current_time_in_ms() - rules->start_time, 1);
-            break;
-        }
-    }
+    
+    printf("0 1 is thinking\n");
+    ft_usleep(rules->time_die);
+    printf("%d 1 died\n", rules->time_die);
     return NULL;
 }
 

@@ -2,7 +2,6 @@ NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
-
 SRC = src/philosophers.c \
       src/time.c \
       src/dinner.c \
