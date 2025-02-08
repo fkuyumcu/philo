@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 09:58:44 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 14:47:56 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,19 @@ void *routine(void *job)
 		continue ;
 	 while (1)
     {
-	if(philo->id % 2 == 0)
-	{
-		eat(philo);
-    	lazyness(philo);
-	}
-	else
-	{
-		lazyness(philo);
-		eat(philo);
-    	
-	}
-    
+		if(philo->id % 2 == 0)
+		{
+			eat(philo);
+			lazyness(philo);
+		}
+		else
+		{
+			lazyness(philo);
+			eat(philo);
+		}
     pthread_mutex_lock(philo->data->finish_mutex);
     int is_finish = philo->data->is_finish;
     pthread_mutex_unlock(philo->data->finish_mutex);
-
     if (is_finish)
         break;
 }
@@ -101,14 +98,13 @@ void *routine(void *job)
 }
 void philo_print(t_philo *philo, char *action)
 {
-    pthread_mutex_lock(philo->data->finish_mutex); // is_finish'i koru.
+    pthread_mutex_lock(philo->data->finish_mutex);
     if (philo->data->is_finish && ft_strncmp(action, "died", 5))
     {
         pthread_mutex_unlock(philo->data->finish_mutex);
         return;
     }
     pthread_mutex_unlock(philo->data->finish_mutex);
-
     pthread_mutex_lock(philo->data->print_mutex);
     printf("%ld %d %s\n", current_time_in_ms() - philo->data->start_time,
            philo->id, action);
@@ -121,19 +117,23 @@ int	start_dinner(t_rules *rules)
 	int i;
 	
 	i = -1;
-	
 	if (rules->num_meals == 0 && rules->check_meal == 1)
 		return 0;
 	rules->start_time = current_time_in_ms();
-	if(rules->num_philo == 1)
-		nietzche(rules);
-	else if(rules->num_philo > 1)
-	{
+	 if(rules->num_philo == 1)
+	 {
+		nietzsche(rules);
+	 }
+	 else if(rules->num_philo > 1)
+	 {
 		while (++i < rules->num_philo)
 		{
 			if(pthread_create(&rules->philos[i].thread_id, NULL, routine, &rules->philos[i]))
 				return (1);
 		}
+		check_philos(rules);
+        end_philos(rules);
 	}
+		
 	return 0;
 }

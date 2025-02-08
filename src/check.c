@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 09:53:25 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 10:15:18 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,6 @@ int check_meals(t_philo philo, int meal)
 }
 
 
-void		final_log(int is_alive)
-{
-    if(is_alive)
-        printf("\nEverybody is OK :)");
-    else
-        printf("\nSomeone's Dead :(\n");
-}
-
 void	check_philos(t_rules *rules)
 {
 	int i;
@@ -99,7 +91,4 @@ void	check_philos(t_rules *rules)
 				break ;
 		}
 	}
-    
-
-	//final_log(0);
 }

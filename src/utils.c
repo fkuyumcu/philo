@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:41:12 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/06 16:49:00 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/08 12:35:07 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	check_args(int argc, char **argv)
         {
             if(!(ft_isnum(argv[i])))
                 return (0);
+			else if(ft_atol(argv[i]) <= 0 ||  ft_atol(argv[i]) >= 2147483647)
+				return (0);
             i++;
         }
     }
@@ -63,31 +65,29 @@ int  ft_strlen(const char *str)
     return len;
 }
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
-	int	i;
-	int	sign;
-	int	res;
+	int		sign;
+	long	result;
+	int		i;
 
-	res = 0;
-	i = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
+	result = 0;
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		sign = -1;
+		if (str[i] == '-')
+			sign = sign * (-1);
 		i++;
 	}
-	else if (str[i] == '+')
-		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res = res * 10 + (str[i] - '0');
+		result = result * 10 + (str[i] - '0');
 		i++;
 	}
-	return (sign * res);
+	return (sign * result);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)

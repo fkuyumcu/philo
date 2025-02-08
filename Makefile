@@ -11,6 +11,7 @@ SRC = src/philosophers.c \
 		src/initializes.c \
 		src/main.c \
 		src/check.c \
+		src/lonely.c \
 
 OBJ = $(SRC:.c=.o)
 
