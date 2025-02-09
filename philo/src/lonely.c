@@ -16,9 +16,13 @@
 void *loop(void *arg)
 {
     t_rules *rules = (t_rules *)arg;
+    pthread_mutex_t fork;
 
+    pthread_mutex_init(&fork, NULL);
     rules->start_time = current_time_in_ms();
     
+    pthread_mutex_lock(&fork);
+    printf("0 1 has taken a fork\n");
     printf("0 1 is thinking\n");
     ft_usleep(rules->time_die);
     printf("%d 1 died\n", rules->time_die);
