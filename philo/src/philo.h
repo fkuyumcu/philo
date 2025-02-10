@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:41:41 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:43:13 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ void					create_philos(t_rules *rules);
 void					init(char **argv, int argc, t_rules *rules);
 void					*routine(void *job);
 
-long					current_time_in_ms(void);
+long					current_time(void);
 
 #endif

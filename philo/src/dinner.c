@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:36:32 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:43:58 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	eat(t_philo *philo)
 	fork_lock(philo);
 	philo_print(philo, "is eating");
 	pthread_mutex_lock(philo->data->meal_mutex);
-	philo->last_meal = current_time_in_ms();
+	philo->last_meal = current_time();
 	pthread_mutex_unlock(philo->data->meal_mutex);
 	ft_usleep(rules->time_eat);
 	pthread_mutex_lock(philo->data->meal_mutex);
@@ -75,7 +75,7 @@ int	start_dinner(t_rules *rules)
 	i = -1;
 	if (rules->num_meals == 0 && rules->check_meal == 1)
 		return (0);
-	rules->start_time = current_time_in_ms();
+	rules->start_time = current_time();
 	if (rules->num_philo == 1)
 		nietzsche(rules);
 	else if (rules->num_philo > 1)

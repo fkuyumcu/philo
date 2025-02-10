@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:36:29 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:43:28 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_death(t_philo *philo)
 	int	hunger;
 
 	pthread_mutex_lock(philo->data->meal_mutex);
-	hunger = current_time_in_ms() - philo->last_meal;
+	hunger = current_time() - philo->last_meal;
 	pthread_mutex_unlock(philo->data->meal_mutex);
 	pthread_mutex_lock(philo->data->finish_mutex);
 	if (philo->data->is_finish)

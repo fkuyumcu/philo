@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:15:25 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:42:24 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:44:36 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*loop(void *arg)
 
 	rules = (t_rules *)arg;
 	pthread_mutex_init(&fork, NULL);
-	rules->start_time = current_time_in_ms();
+	rules->start_time = current_time();
 	pthread_mutex_lock(&fork);
 	printf("0 1 has taken a fork\n");
 	printf("0 1 is thinking\n");
@@ -33,8 +33,7 @@ void	nietzsche(t_rules *rules)
 	pthread_t	m1;
 
 	if (pthread_create(&m1, NULL, loop, rules) != 0)
-		return (philo_error(rules->forks, rules->print_mutex, rules->meal_mutex,
-				rules->finish_mutex, rules->philos));
+		return (philo_error(rules));
 	pthread_join(m1, NULL);
 	pthread_mutex_destroy(rules->print_mutex);
 	pthread_mutex_destroy(rules->finish_mutex);
@@ -80,7 +79,7 @@ void	philo_print(t_philo *philo, char *action)
 	}
 	pthread_mutex_unlock(philo->data->finish_mutex);
 	pthread_mutex_lock(philo->data->print_mutex);
-	printf("%ld %d %s\n", current_time_in_ms() - philo->data->start_time,
+	printf("%ld %d %s\n", current_time() - philo->data->start_time,
 		philo->id, action);
 	pthread_mutex_unlock(philo->data->print_mutex);
 }

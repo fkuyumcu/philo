@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 18:47:17 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:39:56 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:43:07 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 
-	start = current_time_in_ms();
-	while ((current_time_in_ms() - start) < milliseconds)
+	start = current_time();
+	while ((current_time() - start) < milliseconds)
 		usleep(100);
 	return (0);
 }
@@ -36,7 +36,7 @@ void	philo_error(t_rules *rules)
 		free(rules->philos);
 }
 
-long int	current_time_in_ms(void)
+long int	current_time(void)
 {
 	struct timeval	tv;
 
