@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 19:26:50 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 17:13:49 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:36:32 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	start_dinner(t_rules *rules)
 	{
 		while (++i < rules->num_philo)
 		{
-			if (pthread_create(&rules->philos[i].thread_id, NULL,
-					routine, &rules->philos[i]))
+			if (pthread_create(&rules->philos[i].thread_id, NULL, routine,
+					&rules->philos[i]))
 				return (1);
 		}
 		check_philos(rules);

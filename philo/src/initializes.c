@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 14:42:56 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 17:37:35 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:38:41 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,7 @@ void	init_mutexes(t_rules *rules)
 	if (!rules->forks || !rules->philos || !rules->print_mutex
 		|| !rules->meal_mutex || !rules->finish_mutex)
 	{
-		philo_error(rules->forks, rules->print_mutex, rules->meal_mutex,
-			rules->finish_mutex, rules->philos);
+		philo_error(rules);
 	}
 	pthread_mutex_init(rules->print_mutex, NULL);
 	pthread_mutex_init(rules->finish_mutex, NULL);

@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:40:11 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 17:06:02 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:36:29 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	check_philos(t_rules *rules)
 		i = -1;
 		while (++i < rules->num_philo)
 		{
-			if (check_death(&philo[i])
-				|| check_meals(philo[i], rules->num_meals))
+			if (check_death(&philo[i]) || check_meals(philo[i],
+					rules->num_meals))
 				break ;
 		}
 	}

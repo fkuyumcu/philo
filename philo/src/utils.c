@@ -6,7 +6,7 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:41:12 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/08 15:41:28 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:37:55 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int		ft_isnum(char *str)
+int	ft_isnum(char *str)
 {
 	int	count;
 
@@ -37,12 +37,14 @@ int		ft_isnum(char *str)
 	return (1);
 }
 
-int  ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
-    size_t len = 0;
-    while (str[len] != '\0')
-        len++;
-    return len;
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }
 
 long	ft_atol(const char *str)
