@@ -6,11 +6,13 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 18:47:17 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:43:07 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:29:48 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <sys/time.h>
+#include <unistd.h>
 
 int	ft_usleep(size_t milliseconds)
 {

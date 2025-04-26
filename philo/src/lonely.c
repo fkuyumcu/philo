@@ -6,11 +6,12 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:15:25 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:44:36 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:30:13 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdio.h>
 
 void	*loop(void *arg)
 {

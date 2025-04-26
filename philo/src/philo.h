@@ -6,18 +6,14 @@
 /*   By: fkuyumcu <fkuyumcu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 14:00:19 by fkuyumcu          #+#    #+#             */
-/*   Updated: 2025/02/10 11:43:13 by fkuyumcu         ###   ########.fr       */
+/*   Updated: 2025/02/10 12:29:42 by fkuyumcu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 # include <pthread.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
-# include <sys/time.h>
-# include <unistd.h>
 
 typedef pthread_mutex_t	t_mutex;
 typedef struct s_rules	t_rules;
